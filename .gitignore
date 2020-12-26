@@ -24,3 +24,4 @@ rls*.log
 .cargo-remote.toml
 **/node_modules/
 **/pkg/
+**/yarn-error.log
