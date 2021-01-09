@@ -54,7 +54,3 @@ impl Area for Triangle {
     self.side * self.height / 2.0
   }
 }
-
-pub fn compute_shape_area<T: Area>(item: &T) {
-  println!("{}", item.area());
-}
