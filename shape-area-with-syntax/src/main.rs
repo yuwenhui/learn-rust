@@ -1,9 +1,9 @@
-use std::f32::consts::PI;
+use std::f64::consts::PI;
 
 fn main() {
   let rectangle = Rectangle {
-    width: 12.0,
-    height: 12.0,
+    width: 12,
+    height: 12,
   };
   println!("rectangle area {}", rectangle.area());
 
@@ -14,43 +14,44 @@ fn main() {
 
   let triangle = Triangle {
     side: 12.5,
-    height: 32.0,
+    height: 32.125,
   };
   println!("triangle area {}", triangle.area());
 }
 
-struct Rectangle {
-  width: f32,
-  height: f32,
+struct Rectangle<T> {
+  width: T,
+  height: T,
 }
 
-struct Circle {
-  r: f32,
+struct Circle<T> {
+  r: T,
 }
 
-struct Triangle {
-  side: f32,
-  height: f32,
+struct Triangle<T> {
+  side: T,
+  height: T,
 }
 
 pub trait Area {
-  fn area(&self) -> f32;
+  fn area(&self) -> String;
 }
 
-impl Area for Rectangle {
-  fn area(&self) -> f32 {
-    self.width * self.height
+impl <T: Copy + std::ops::Mul<Output = T> + std::fmt::Display> Area for Rectangle<T> {
+  fn area(&self) -> String {
+    format!("{}", self.width * self.height)
   }
 }
 
-impl Area for Circle {
-  fn area(&self) -> f32 {
-    PI * self.r.powi(2)
+impl <T: Copy + std::ops::Mul<Output = f64> + std::fmt::Display> Area for Circle<T> {
+  fn area(&self) -> String {
+    let rr = self.r * self.r;
+    format!("{}", rr * PI)
   }
 }
 
-impl Area for Triangle {
-  fn area(&self) -> f32 {
-    self.side * self.height / 2.0
+impl <T: Copy + std::ops::Mul<Output = f64> + std::fmt::Display> Area for Triangle<T> {
+  fn area(&self) -> String {
+    format!("{}", self.side * self.height / 2.0)
   }
 }
