@@ -45,8 +45,7 @@ impl <T: Copy + std::ops::Mul<Output = T> + std::fmt::Display> Area for Rectangl
 
 impl <T: Copy + std::ops::Mul<Output = f64> + std::fmt::Display> Area for Circle<T> {
   fn area(&self) -> String {
-    let rr = self.r * self.r;
-    format!("{}", rr * PI)
+    format!("{}", self.r * self.r * PI)
   }
 }
 
